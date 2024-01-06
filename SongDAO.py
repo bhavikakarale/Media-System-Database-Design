@@ -2,7 +2,7 @@ from connection import connection
 
 class SongDAO:
     def __init__(self):
-        print("here")
+        print("In SongDAO init")
 
     def get_connection(self):
         print("Got connection")

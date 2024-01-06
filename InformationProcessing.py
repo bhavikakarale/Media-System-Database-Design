@@ -1,4 +1,5 @@
 from SongDAO import SongDAO
+from ArtistDAO import ArtistDAO 
 import sys
 
 class InformationProcessing:
@@ -27,6 +28,10 @@ class InformationProcessing:
         print("2. Insert new Song")
         print("3. Update Song")
         print("4. Delete Song")
+        print("5. Get all Artists")
+        print("6. Insert new Artist")
+        print("7. Delete Artist")
+        print("8. Update Artist Details")
         # # print("5. Extras")
         print("\n0. Quit\n")
         option = int(input())
@@ -84,14 +89,53 @@ class InformationProcessing:
                 print("Song not found")
             sd.get_all_songs()
 
+        if option == 5:
+            ad = ArtistDAO()
+            ad.get_all_artists()
+
+        if option == 6:
+            ArtistID = int(input("Insert New Artist ID: "))
+            Name = input("Insert New Artist Name: ")
+            Status = input("Insert New Artist Status: ")
+            Type = input("Insert New Artist Type: ")
+            Country = input("Insert New Artist Country: ")
+            PrimaryGenre = input("Insert New Artist Primary Genre: ")
+            ad = ArtistDAO()
+            Artistinserted = ad.insert_artist(ArtistID, Name, Status, Type, Country, PrimaryGenre)
+            if Artistinserted:
+                print("Artist Details inserted successfully")
+
+        if option == 7:
+            deleteArtistID = input("Enter Artist ID to delete: ")
+            ad = ArtistDAO()
+            artistdeleted = ad.delete_artist(deleteArtistID)
+            if artistdeleted:
+                print("Artist deleted successfully!")
+            else:
+                print("Artist not found")
+
+        if option == 8:
+            artistName = input("Insert new Artist name to update: ")
+            ad = ArtistDAO()
+            artistupdated = ad.update_artist(artistName)
+            if artistupdated:
+                print("Artist Updated Successfully")
+            else:
+                print("Could not update the Artist Details")
+
+        
+
         if option == 0:
             print("Bye!")
             sys.exit(0)
 
 if __name__ == "__main__":
     sd = SongDAO()
+    ad = ArtistDAO()
     sd.get_all_songs()
     sd.update_song()
     sd.delete_song()
     sd.insert_song_media()
     sd.insert_song()
+    ad.get_all_artists()
+    

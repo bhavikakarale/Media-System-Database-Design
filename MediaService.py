@@ -96,3 +96,4 @@ if __name__ == "__main__":
     ip = InformationProcessing()
     ip.print_menu()
     ip.process()
+    
